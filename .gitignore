@@ -1,6 +1,6 @@
-# Generated proof files (except reports folder)
+# Generated proof files (except index.html)
 *.html
-!reports/**/*.html
+!index.html
 *.json
 
 # Python

@@ -536,9 +536,9 @@ def generate_html_report(package_name, start_date, end_date, data, range_data=No
             <div class="chart-header">
                 <h2 class="chart-title">Download Trends</h2>
                 <div class="chart-tabs">
-                    <button class="chart-tab active" onclick="showChart('daily')">Daily</button>
-                    <button class="chart-tab" onclick="showChart('weekly')" id="weeklyTab" style="display: {'inline-block' if len(weekly_data) > 1 else 'none'};">Weekly</button>
-                    <button class="chart-tab" onclick="showChart('monthly')" id="monthlyTab" style="display: {'inline-block' if len(monthly_data) > 1 else 'none'};">Monthly</button>
+                    <button class="chart-tab active" onclick="showChart('daily', event)">Daily</button>
+                    <button class="chart-tab" onclick="showChart('weekly', event)" id="weeklyTab" style="display: {'inline-block' if len(weekly_data) > 1 else 'none'};">Weekly</button>
+                    <button class="chart-tab" onclick="showChart('monthly', event)" id="monthlyTab" style="display: {'inline-block' if len(monthly_data) > 1 else 'none'};">Monthly</button>
                 </div>
             </div>
             <div class="chart-container">
@@ -620,14 +620,25 @@ def generate_html_report(package_name, start_date, end_date, data, range_data=No
         let currentChart = null;
         let currentView = 'daily';
 
-        function showChart(view) {{
+        function showChart(view, clickEvent) {{
             currentView = view;
 
             // Update tabs
             document.querySelectorAll('.chart-tab').forEach(tab => {{
                 tab.classList.remove('active');
             }});
-            event.target.classList.add('active');
+
+            // If called from button click, update active state
+            if (clickEvent && clickEvent.target) {{
+                clickEvent.target.classList.add('active');
+            }} else {{
+                // If called programmatically, activate the corresponding tab
+                document.querySelectorAll('.chart-tab').forEach(tab => {{
+                    if (tab.onclick && tab.onclick.toString().includes(view)) {{
+                        tab.classList.add('active');
+                    }}
+                }});
+            }}
 
             let labels, data;
 

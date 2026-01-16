@@ -53,11 +53,17 @@ def calculate_weekly_data(daily_data):
         if len(current_week) == 7:
             week_start = current_week[0]['day']
             week_end = current_week[-1]['day']
+
+            # Format label as "Dec 29 - Jan 4"
+            start_date = datetime.strptime(week_start, '%Y-%m-%d')
+            end_date = datetime.strptime(week_end, '%Y-%m-%d')
+            label = f"{start_date.strftime('%b %d')} - {end_date.strftime('%b %d')}"
+
             weekly.append({
                 'start': week_start,
                 'end': week_end,
                 'downloads': current_week_downloads,
-                'label': f"{week_start[5:]}"
+                'label': label
             })
             current_week = []
             current_week_downloads = 0
@@ -66,11 +72,17 @@ def calculate_weekly_data(daily_data):
     if current_week:
         week_start = current_week[0]['day']
         week_end = current_week[-1]['day']
+
+        # Format label as "Dec 29 - Jan 4"
+        start_date = datetime.strptime(week_start, '%Y-%m-%d')
+        end_date = datetime.strptime(week_end, '%Y-%m-%d')
+        label = f"{start_date.strftime('%b %d')} - {end_date.strftime('%b %d')}"
+
         weekly.append({
             'start': week_start,
             'end': week_end,
             'downloads': current_week_downloads,
-            'label': f"{week_start[5:]}"
+            'label': label
         })
 
     return weekly

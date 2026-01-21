@@ -24,6 +24,48 @@ def fetch_downloads(package_name, start_date, end_date):
         print(f"Error fetching data: {str(e)}")
         return None
 
+def fetch_github_stars(github_url):
+    """Fetch GitHub stars count"""
+    try:
+        # Extract owner and repo from URL
+        parts = github_url.replace('https://github.com/', '').split('/')
+        if len(parts) >= 2:
+            owner, repo = parts[0], parts[1]
+            api_url = f"https://api.github.com/repos/{owner}/{repo}"
+
+            req = urllib.request.Request(api_url)
+            req.add_header('Accept', 'application/vnd.github.v3+json')
+
+            with urllib.request.urlopen(req) as response:
+                repo_data = json.loads(response.read().decode())
+                return repo_data.get('stargazers_count', 0)
+    except Exception as e:
+        print(f"Could not fetch GitHub stars: {str(e)}")
+        return None
+
+def calculate_weekly_growth(daily_data):
+    """Calculate this week vs previous week growth"""
+    if not daily_data or len(daily_data) < 7:
+        return None
+
+    # Get last 7 days and previous 7 days
+    last_week = daily_data[-7:]
+    prev_week = daily_data[-14:-7] if len(daily_data) >= 14 else None
+
+    last_week_total = sum(d['downloads'] for d in last_week)
+
+    if prev_week:
+        prev_week_total = sum(d['downloads'] for d in prev_week)
+        if prev_week_total > 0:
+            growth_rate = ((last_week_total - prev_week_total) / prev_week_total) * 100
+            return {
+                'last_week': last_week_total,
+                'prev_week': prev_week_total,
+                'growth_rate': growth_rate
+            }
+
+    return {'last_week': last_week_total}
+
 def fetch_range_data(package_name, start_date, end_date):
     """Fetch daily download data for charts"""
     period = f"{start_date}:{end_date}"
@@ -111,7 +153,7 @@ def generate_verification_hash(package_name, start_date, end_date, downloads, ti
     data_string = f"{package_name}|{start_date}|{end_date}|{downloads}|{timestamp}"
     return hashlib.sha256(data_string.encode()).hexdigest()[:16]
 
-def generate_html_report(package_name, start_date, end_date, data, range_data=None):
+def generate_html_report(package_name, start_date, end_date, data, range_data=None, github_stars=None, weekly_growth=None):
     """Generate beautiful Apple-style HTML proof document"""
 
     downloads = data['downloads']
@@ -534,13 +576,11 @@ def generate_html_report(package_name, start_date, end_date, data, range_data=No
                 <div class="stat-label">Total Downloads</div>
                 <div class="stat-value">{downloads:,}</div>
             </div>
+            {'<div class="stat-card"><div class="stat-label">This Week</div><div class="stat-value">' + f"{weekly_growth['last_week']:,}" + '</div>' + (f'<div style="font-size: 14px; color: {"#34c759" if weekly_growth.get("growth_rate", 0) > 0 else "#ff3b30"}; margin-top: 8px; font-weight: 500;">{weekly_growth["growth_rate"]:+.1f}% vs last week</div>' if 'growth_rate' in weekly_growth else '') + '</div>' if weekly_growth else ''}
+            {'<div class="stat-card"><div class="stat-label">GitHub Stars</div><div class="stat-value" style="font-size: 36px;">⭐ ' + f"{github_stars:,}" + '</div></div>' if github_stars else ''}
             <div class="stat-card">
-                <div class="stat-label">Start Date</div>
-                <div class="stat-value" style="font-size: 28px;">{data['start']}</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">End Date</div>
-                <div class="stat-value" style="font-size: 28px;">{data['end']}</div>
+                <div class="stat-label">Date Range</div>
+                <div class="stat-value" style="font-size: 22px;">{data['start']}<br/>to<br/>{data['end']}</div>
             </div>
         </div>
 
@@ -817,12 +857,28 @@ def main():
     range_data = fetch_range_data(package_name, start_date, end_date)
 
     if range_data:
-        print(f"✓ Successfully fetched {len(range_data.get('downloads', []))} days of data\n")
+        print(f"✓ Successfully fetched {len(range_data.get('downloads', []))} days of data")
     else:
-        print("⚠ Could not fetch detailed data, proceeding without charts\n")
+        print("⚠ Could not fetch detailed data, proceeding without charts")
+
+    # Fetch GitHub stars
+    github_url = f"https://github.com/Flux159/{package_name}"
+    print("Fetching GitHub stars...")
+    github_stars = fetch_github_stars(github_url)
+    if github_stars:
+        print(f"✓ GitHub Stars: {github_stars:,}")
+
+    # Calculate weekly growth
+    weekly_growth = None
+    if range_data and 'downloads' in range_data:
+        weekly_growth = calculate_weekly_growth(range_data['downloads'])
+        if weekly_growth and 'growth_rate' in weekly_growth:
+            print(f"✓ Weekly Growth: {weekly_growth['growth_rate']:+.1f}%")
+
+    print()
 
     # Generate HTML report
-    html_content = generate_html_report(package_name, start_date, end_date, data, range_data)
+    html_content = generate_html_report(package_name, start_date, end_date, data, range_data, github_stars, weekly_growth)
 
     # Save to file
     output_filename = f"stylish_proof_{package_name}_{start_date}_to_{end_date}.html"

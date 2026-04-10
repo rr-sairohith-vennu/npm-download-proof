@@ -35,7 +35,6 @@ body {
   print-color-adjust: exact;
 }
 
-/* ── Outer wrapper (screen preview) ── */
 .slides-wrapper {
   display: flex;
   flex-direction: column;
@@ -44,7 +43,6 @@ body {
   padding: 48px 20px;
 }
 
-/* ── Slide base ── */
 .slide {
   position: relative;
   width: min(720px, 100%);
@@ -62,7 +60,6 @@ body {
   color: var(--light);
 }
 
-/* Decorative faded section number */
 .deco {
   position: absolute;
   top: 32px;
@@ -76,11 +73,8 @@ body {
   user-select: none;
   z-index: 0;
 }
-.slide--dark .deco {
-  color: rgba(255,255,255,0.055);
-}
+.slide--dark .deco { color: rgba(255,255,255,0.055); }
 
-/* Page number – bottom right */
 .pg {
   position: absolute;
   bottom: 36px;
@@ -93,7 +87,6 @@ body {
 }
 .slide--dark .pg { color: rgba(255,255,255,0.25); }
 
-/* Brand tag – bottom left */
 .brand {
   position: absolute;
   bottom: 36px;
@@ -106,7 +99,6 @@ body {
 }
 .slide--dark .brand { color: rgba(255,255,255,0.2); }
 
-/* ── Typography helpers ── */
 .eyebrow {
   font-size: 10px;
   font-weight: 700;
@@ -149,10 +141,6 @@ body {
   padding-left: 20px;
   border-left: 3px solid var(--ink);
 }
-.slide--dark .callout {
-  color: #FFFFFF;
-  border-left-color: rgba(255,255,255,0.4);
-}
 
 .rule {
   width: 36px;
@@ -161,12 +149,8 @@ body {
   margin: 24px 0;
   flex-shrink: 0;
 }
-.slide--dark .rule { background: rgba(255,255,255,0.12); }
 
-
-/* ════════════════════════════════
-   SLIDE 1 — COVER
-════════════════════════════════ */
+/* ── Cover ── */
 .cover-chip {
   display: inline-flex;
   align-items: center;
@@ -176,12 +160,10 @@ body {
   padding: 6px 16px;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.3px;
   font-family: 'SF Mono', 'Monaco', monospace;
   color: rgba(255,255,255,0.6);
   align-self: flex-start;
 }
-
 .cover-headline {
   font-size: 112px;
   font-weight: 900;
@@ -189,7 +171,6 @@ body {
   line-height: 0.88;
   color: #FFFFFF;
 }
-
 .cover-kicker {
   font-size: 22px;
   font-weight: 300;
@@ -198,14 +179,12 @@ body {
   color: rgba(255,255,255,0.38);
   margin-top: 18px;
 }
-
 .cover-meta {
   font-size: 13px;
   color: rgba(255,255,255,0.28);
   line-height: 1.7;
   margin-top: 28px;
 }
-
 .cover-badge {
   display: inline-flex;
   align-items: center;
@@ -219,16 +198,12 @@ body {
 }
 .cover-badge::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: 6px; height: 6px;
   border-radius: 50%;
   background: #3DBE6E;
 }
 
-
-/* ════════════════════════════════
-   SLIDE 3 — METRIC GRID
-════════════════════════════════ */
+/* ── Metric grid ── */
 .metric-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -237,7 +212,6 @@ body {
   flex: 1;
   margin-top: 28px;
 }
-
 .metric-cell {
   background: var(--cell);
   padding: 28px 26px;
@@ -245,7 +219,6 @@ body {
   flex-direction: column;
   justify-content: flex-end;
 }
-
 .metric-eyebrow {
   font-size: 9px;
   font-weight: 700;
@@ -254,7 +227,6 @@ body {
   color: var(--muted);
   margin-bottom: 10px;
 }
-
 .metric-val {
   font-size: 52px;
   font-weight: 800;
@@ -262,21 +234,16 @@ body {
   line-height: 1;
   color: var(--ink);
 }
-
 .metric-note {
   font-size: 12px;
   font-weight: 500;
   color: var(--muted);
   margin-top: 6px;
-  letter-spacing: 0;
 }
 .metric-note.down { color: var(--down); }
 .metric-note.up   { color: var(--up); }
 
-
-/* ════════════════════════════════
-   SLIDE 4 — BAR CHART
-════════════════════════════════ */
+/* ── Bar chart ── */
 .chart-wrap {
   flex: 1;
   display: flex;
@@ -284,14 +251,12 @@ body {
   margin-top: 20px;
   min-height: 0;
 }
-
 .bars {
   display: flex;
   align-items: flex-end;
-  gap: 6px;
+  gap: 4px;
   flex: 1;
 }
-
 .bc {
   flex: 1;
   height: 100%;
@@ -300,56 +265,36 @@ body {
   align-items: center;
   justify-content: flex-end;
 }
-
 .bv {
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 800;
   color: var(--ink);
   margin-bottom: 3px;
-  letter-spacing: 0;
   white-space: nowrap;
 }
-
 .bf {
   width: 100%;
   background: var(--ink);
   border-radius: 2px 2px 0 0;
   min-height: 3px;
 }
-
-.bf--peak {
-  background: var(--ink);
-}
-
-.bf--partial {
-  background: var(--ink);
-  opacity: 0.35;
-}
-
+.bf--peak { background: var(--ink); }
+.bf--partial { background: var(--ink); opacity: 0.35; }
 .xlabels {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   margin-top: 7px;
 }
-
 .xl {
   flex: 1;
-  font-size: 8px;
+  font-size: 7px;
   color: var(--muted);
   text-align: center;
   overflow: hidden;
   white-space: nowrap;
 }
-
-.xl--bold {
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.xl--dim {
-  opacity: 0.4;
-}
-
+.xl--bold { font-weight: 700; color: var(--ink); }
+.xl--dim  { opacity: 0.4; }
 .chart-note {
   font-size: 11px;
   color: var(--muted);
@@ -358,10 +303,7 @@ body {
   flex-shrink: 0;
 }
 
-
-/* ════════════════════════════════
-   SLIDE 5 — TIMELINE
-════════════════════════════════ */
+/* ── Timeline ── */
 .timeline {
   flex: 1;
   display: flex;
@@ -369,7 +311,6 @@ body {
   justify-content: space-evenly;
   margin-top: 20px;
 }
-
 .tl-row {
   display: flex;
   align-items: baseline;
@@ -377,9 +318,7 @@ body {
   padding: 13px 0;
   border-bottom: 1px solid var(--rule);
 }
-
 .tl-row:last-child { border-bottom: none; }
-
 .tl-date {
   font-size: 10px;
   font-weight: 700;
@@ -389,7 +328,6 @@ body {
   width: 72px;
   flex-shrink: 0;
 }
-
 .tl-val {
   font-size: 28px;
   font-weight: 800;
@@ -399,29 +337,20 @@ body {
   width: 92px;
   flex-shrink: 0;
 }
-
-.tl-val--peak {
-  font-size: 30px;
-  font-weight: 900;
-}
-
+.tl-val--peak { font-size: 30px; font-weight: 900; }
 .tl-desc {
   font-size: 13px;
   color: var(--dim);
   line-height: 1.45;
 }
 
-
-/* ════════════════════════════════
-   SLIDE 6 — RECENT ACTIVITY
-════════════════════════════════ */
+/* ── Recent months ── */
 .month-row {
   display: flex;
   gap: 12px;
   flex: 1;
   margin-top: 20px;
 }
-
 .month-block {
   flex: 1;
   background: var(--cell);
@@ -430,11 +359,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-
-.month-block--hi {
-  background: var(--ink);
-}
-
+.month-block--hi { background: var(--ink); }
 .mn {
   font-size: 9px;
   font-weight: 700;
@@ -444,7 +369,6 @@ body {
   margin-bottom: 12px;
 }
 .month-block--hi .mn { color: rgba(255,255,255,0.4); }
-
 .mv {
   font-size: 38px;
   font-weight: 800;
@@ -453,7 +377,6 @@ body {
   color: var(--ink);
 }
 .month-block--hi .mv { color: #FFFFFF; }
-
 .ms {
   font-size: 11px;
   color: var(--muted);
@@ -461,7 +384,6 @@ body {
   font-weight: 500;
 }
 .month-block--hi .ms { color: rgba(255,255,255,0.35); }
-
 .stat-row {
   display: flex;
   justify-content: space-between;
@@ -470,7 +392,6 @@ body {
   border-bottom: 1px solid var(--rule);
 }
 .stat-row:last-child { border-bottom: none; }
-
 .stat-label {
   font-size: 10px;
   font-weight: 700;
@@ -478,30 +399,16 @@ body {
   text-transform: uppercase;
   color: var(--muted);
 }
-
 .stat-val {
   font-size: 26px;
   font-weight: 800;
   letter-spacing: -0.5px;
   color: var(--ink);
 }
+.stat-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-.stat-sub {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-
-/* ════════════════════════════════
-   SLIDE 7 — VERIFY
-════════════════════════════════ */
-.v-rows {
-  display: flex;
-  flex-direction: column;
-  margin: 20px 0;
-}
-
+/* ── Verify ── */
+.v-rows { display: flex; flex-direction: column; margin: 20px 0; }
 .vrow {
   display: flex;
   justify-content: space-between;
@@ -510,7 +417,6 @@ body {
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .vrow:last-child { border-bottom: none; }
-
 .vl {
   font-size: 10px;
   font-weight: 700;
@@ -518,7 +424,6 @@ body {
   text-transform: uppercase;
   color: rgba(255,255,255,0.3);
 }
-
 .vv {
   font-size: 12px;
   font-weight: 500;
@@ -526,7 +431,6 @@ body {
   font-family: 'SF Mono', 'Monaco', monospace;
   text-align: right;
 }
-
 .verified {
   display: inline-flex;
   align-items: center;
@@ -539,13 +443,11 @@ body {
 }
 .verified::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: 6px; height: 6px;
   border-radius: 50%;
   background: #3DBE6E;
   flex-shrink: 0;
 }
-
 .api-box {
   background: rgba(255,255,255,0.035);
   border: 1px solid rgba(255,255,255,0.07);
@@ -558,26 +460,11 @@ body {
   word-break: break-all;
 }
 
-
-/* ════════════════════════════════
-   PRINT STYLES
-════════════════════════════════ */
+/* ── Print ── */
 @media print {
-  @page {
-    size: 1080px 1350px;
-    margin: 0;
-  }
-
-  body {
-    background: transparent;
-  }
-
-  .slides-wrapper {
-    gap: 0;
-    padding: 0;
-    background: transparent;
-  }
-
+  @page { size: 1080px 1350px; margin: 0; }
+  body { background: transparent; }
+  .slides-wrapper { gap: 0; padding: 0; background: transparent; }
   .slide {
     width: 1080px !important;
     height: 1350px !important;
@@ -588,40 +475,14 @@ body {
     break-after: page;
     padding: 88px 100px 100px;
   }
-
-  .slide:last-child {
-    page-break-after: avoid;
-    break-after: avoid;
-  }
-
-  .deco {
-    font-size: 220px;
-  }
-
-  .cover-headline {
-    font-size: 160px;
-    letter-spacing: -8px;
-  }
-
-  .slide-title {
-    font-size: 68px;
-  }
-
-  .metric-val {
-    font-size: 68px;
-  }
-
-  .tl-val {
-    font-size: 36px;
-  }
-
-  .mv {
-    font-size: 50px;
-  }
-
-  .stat-val {
-    font-size: 34px;
-  }
+  .slide:last-child { page-break-after: avoid; break-after: avoid; }
+  .deco { font-size: 220px; }
+  .cover-headline { font-size: 160px; letter-spacing: -8px; }
+  .slide-title { font-size: 68px; }
+  .metric-val { font-size: 68px; }
+  .tl-val { font-size: 36px; }
+  .mv { font-size: 50px; }
+  .stat-val { font-size: 34px; }
 }
 
 </style>
@@ -630,20 +491,17 @@ body {
 <div class="slides-wrapper">
 
 
-  <!-- ═══════════════════════════════════════
-       SLIDE 1 — COVER
-  ═══════════════════════════════════════ -->
+  <!-- ═══ SLIDE 1: COVER ═══ -->
   <div class="slide slide--dark">
-
     <div class="cover-chip">mcp-server-kubernetes</div>
 
     <div style="margin-top: auto; margin-bottom: auto; padding-bottom: 16px;">
       <div class="eyebrow" style="color: rgba(255,255,255,0.25); margin-bottom: 28px;">NPM Download Report</div>
-      <div class="cover-headline">133K+</div>
+      <div class="cover-headline">218K+</div>
       <div class="cover-kicker">Downloads</div>
       <div class="cover-meta">
         Official NPM Registry &nbsp;·&nbsp; Verified Data<br>
-        July 2024 &ndash; January 2026
+        July 2024 &ndash; April 2026
       </div>
       <div class="cover-badge">Data Verified</div>
     </div>
@@ -653,29 +511,27 @@ body {
   </div>
 
 
-  <!-- ═══════════════════════════════════════
-       SLIDE 2 — THE NUMBER
-  ═══════════════════════════════════════ -->
+  <!-- ═══ SLIDE 2: THE NUMBER ═══ -->
   <div class="slide">
     <div class="deco">01</div>
 
     <div>
       <div class="eyebrow">Total Downloads</div>
-      <div style="font-size: 98px; font-weight: 900; letter-spacing: -4px; line-height: 0.88; color: var(--ink);">133,399</div>
+      <div style="font-size: 98px; font-weight: 900; letter-spacing: -4px; line-height: 0.88; color: var(--ink);">218,562</div>
     </div>
 
     <div class="rule"></div>
 
     <div class="body" style="margin-bottom: 28px;">
       Recorded between <strong style="color: var(--ink);">July 15, 2024</strong> and
-      <strong style="color: var(--ink);">January 15, 2026</strong> via the official
+      <strong style="color: var(--ink);">April 10, 2026</strong> via the official
       NPM Registry API. Data is publicly verifiable by anyone at any time.
     </div>
 
     <div class="callout">
       "Launched in December 2024.<br>
-      Crossed 100K downloads<br>
-      by late 2025."
+      Crossed 200K downloads<br>
+      by March 2026."
     </div>
 
     <div style="flex: 1;"></div>
@@ -684,9 +540,7 @@ body {
   </div>
 
 
-  <!-- ═══════════════════════════════════════
-       SLIDE 3 — SNAPSHOT
-  ═══════════════════════════════════════ -->
+  <!-- ═══ SLIDE 3: SNAPSHOT ═══ -->
   <div class="slide">
     <div class="deco">02</div>
 
@@ -698,23 +552,23 @@ body {
     <div class="metric-grid">
       <div class="metric-cell">
         <div class="metric-eyebrow">Total Downloads</div>
-        <div class="metric-val">133,399</div>
-        <div class="metric-note">Jul 2024 – Jan 2026</div>
+        <div class="metric-val">218,562</div>
+        <div class="metric-note">Jul 2024 – Apr 2026</div>
       </div>
       <div class="metric-cell">
         <div class="metric-eyebrow">This Week</div>
-        <div class="metric-val" style="font-size: 46px;">4,738</div>
-        <div class="metric-note down">−32.8% vs last week</div>
+        <div class="metric-val" style="font-size: 46px;">9,448</div>
+        <div class="metric-note down">−16.0% vs last week</div>
       </div>
       <div class="metric-cell">
         <div class="metric-eyebrow">GitHub Stars</div>
-        <div class="metric-val" style="font-size: 46px;">1,268</div>
-        <div class="metric-note">⭐ as of Jan 2026</div>
+        <div class="metric-val" style="font-size: 46px;">1,376</div>
+        <div class="metric-note">⭐ as of Apr 2026</div>
       </div>
       <div class="metric-cell">
         <div class="metric-eyebrow">Peak Month</div>
-        <div class="metric-val" style="font-size: 46px;">23,444</div>
-        <div class="metric-note up">December 2025</div>
+        <div class="metric-val" style="font-size: 46px;">43,703</div>
+        <div class="metric-note up">March 2026 — new record</div>
       </div>
     </div>
 
@@ -723,16 +577,14 @@ body {
   </div>
 
 
-  <!-- ═══════════════════════════════════════
-       SLIDE 4 — MONTHLY TREND (CSS chart)
-  ═══════════════════════════════════════ -->
+  <!-- ═══ SLIDE 4: MONTHLY TREND ═══ -->
   <div class="slide">
     <div class="deco">03</div>
 
     <div>
       <div class="eyebrow">Monthly Downloads</div>
       <div class="slide-title">The Growth<br>Curve</div>
-      <div class="slide-sub">Dec 2024 &ndash; Jan 2026</div>
+      <div class="slide-sub">Dec 2024 &ndash; Apr 2026</div>
     </div>
 
     <div class="chart-wrap">
@@ -743,41 +595,47 @@ body {
         <div class="bc"><div class="bf" style="height:3px;"></div></div>
         <!-- Feb 2025: 237 → 3px -->
         <div class="bc"><div class="bf" style="height:3px;"></div></div>
-        <!-- Mar 2025: 4164 → 33px -->
-        <div class="bc"><div class="bf" style="height:33px;"></div></div>
-        <!-- Apr 2025: 10976 → 87px -->
-        <div class="bc">
-          <div class="bv">11K</div>
-          <div class="bf" style="height:87px;"></div>
-        </div>
-        <!-- May 2025: 7005 → 55px -->
-        <div class="bc"><div class="bf" style="height:55px;"></div></div>
-        <!-- Jun 2025: 17060 → 135px -->
+        <!-- Mar 2025: 4164 → 18px -->
+        <div class="bc"><div class="bf" style="height:18px;"></div></div>
+        <!-- Apr 2025: 10976 → 46px -->
+        <div class="bc"><div class="bf" style="height:46px;"></div></div>
+        <!-- May 2025: 7005 → 30px -->
+        <div class="bc"><div class="bf" style="height:30px;"></div></div>
+        <!-- Jun 2025: 17060 → 72px -->
         <div class="bc">
           <div class="bv">17K</div>
-          <div class="bf" style="height:135px;"></div>
+          <div class="bf" style="height:72px;"></div>
         </div>
-        <!-- Jul 2025: 12439 → 98px -->
-        <div class="bc"><div class="bf" style="height:98px;"></div></div>
-        <!-- Aug 2025: 12062 → 95px -->
-        <div class="bc"><div class="bf" style="height:95px;"></div></div>
-        <!-- Sep 2025: 16245 → 128px -->
+        <!-- Jul 2025: 12439 → 53px -->
+        <div class="bc"><div class="bf" style="height:53px;"></div></div>
+        <!-- Aug 2025: 12062 → 51px -->
+        <div class="bc"><div class="bf" style="height:51px;"></div></div>
+        <!-- Sep 2025: 16245 → 69px -->
         <div class="bc">
           <div class="bv">16K</div>
-          <div class="bf" style="height:128px;"></div>
+          <div class="bf" style="height:69px;"></div>
         </div>
-        <!-- Oct 2025: 9030 → 71px -->
-        <div class="bc"><div class="bf" style="height:71px;"></div></div>
-        <!-- Nov 2025: 8085 → 64px -->
-        <div class="bc"><div class="bf" style="height:64px;"></div></div>
-        <!-- Dec 2025: 23444 → 185px (peak) -->
+        <!-- Oct 2025: 9030 → 38px -->
+        <div class="bc"><div class="bf" style="height:38px;"></div></div>
+        <!-- Nov 2025: 8085 → 34px -->
+        <div class="bc"><div class="bf" style="height:34px;"></div></div>
+        <!-- Dec 2025: 23444 → 99px -->
         <div class="bc">
-          <div class="bv" style="font-size:9px;">23K ↑</div>
+          <div class="bv">23K</div>
+          <div class="bf" style="height:99px;"></div>
+        </div>
+        <!-- Jan 2026: 21865 → 93px -->
+        <div class="bc"><div class="bf" style="height:93px;"></div></div>
+        <!-- Feb 2026: 18777 → 80px -->
+        <div class="bc"><div class="bf" style="height:80px;"></div></div>
+        <!-- Mar 2026: 43703 → 185px (PEAK) -->
+        <div class="bc">
+          <div class="bv" style="font-size:8px;">44K ↑</div>
           <div class="bf bf--peak" style="height:185px;"></div>
         </div>
-        <!-- Jan 2026: 12317 → 97px (partial) -->
+        <!-- Apr 2026: 13135 → 56px (partial) -->
         <div class="bc">
-          <div class="bf bf--partial" style="height:97px;"></div>
+          <div class="bf bf--partial" style="height:56px;"></div>
         </div>
       </div>
 
@@ -794,21 +652,22 @@ body {
         <div class="xl">S</div>
         <div class="xl">O</div>
         <div class="xl">N</div>
-        <div class="xl xl--bold">D'25</div>
-        <div class="xl xl--dim">J'26</div>
+        <div class="xl">D'25</div>
+        <div class="xl">J</div>
+        <div class="xl">F</div>
+        <div class="xl xl--bold">M'26</div>
+        <div class="xl xl--dim">A'26</div>
       </div>
     </div>
 
-    <div class="chart-note">* Jan 2026 shown at reduced opacity — partial month (15 days only)</div>
+    <div class="chart-note">* Apr 2026 shown at reduced opacity — partial month (10 days only)</div>
 
     <div class="brand">mcp-server-kubernetes</div>
     <div class="pg">4 / 7</div>
   </div>
 
 
-  <!-- ═══════════════════════════════════════
-       SLIDE 5 — GROWTH STORY
-  ═══════════════════════════════════════ -->
+  <!-- ═══ SLIDE 5: GROWTH STORY ═══ -->
   <div class="slide">
     <div class="deco">04</div>
 
@@ -831,22 +690,17 @@ body {
       <div class="tl-row">
         <div class="tl-date">Apr 2025</div>
         <div class="tl-val">10,976</div>
-        <div class="tl-desc">First 10K+ month. Peak day: <strong>946 downloads</strong>.</div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-date">Jun 2025</div>
-        <div class="tl-val">17,060</div>
-        <div class="tl-desc">New record. Single-day peak of <strong>1,266 downloads</strong>.</div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-date">Sep 2025</div>
-        <div class="tl-val">16,245</div>
-        <div class="tl-desc">Sustained momentum. Peak day: <strong>1,471 downloads</strong>.</div>
+        <div class="tl-desc">First 10K+ month. Adoption accelerates significantly.</div>
       </div>
       <div class="tl-row">
         <div class="tl-date">Dec 2025</div>
-        <div class="tl-val tl-val--peak">23,444</div>
-        <div class="tl-desc"><strong>Best month ever.</strong> 116× growth vs Dec 2024.</div>
+        <div class="tl-val">23,444</div>
+        <div class="tl-desc">First 20K+ month. Peak day: <strong>1,995 downloads</strong>.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Mar 2026</div>
+        <div class="tl-val tl-val--peak">43,703</div>
+        <div class="tl-desc"><strong>New record — best month ever.</strong> 216× growth vs Dec 2024.</div>
       </div>
     </div>
 
@@ -855,37 +709,35 @@ body {
   </div>
 
 
-  <!-- ═══════════════════════════════════════
-       SLIDE 6 — RECENT ACTIVITY
-  ═══════════════════════════════════════ -->
+  <!-- ═══ SLIDE 6: RECENT ACTIVITY ═══ -->
   <div class="slide">
     <div class="deco">05</div>
 
     <div>
-      <div class="eyebrow">Q4 2025 &plus; Jan 2026</div>
+      <div class="eyebrow">Q1 2026 &plus; Apr 2026</div>
       <div class="slide-title">Recent<br>Activity</div>
     </div>
 
     <div class="month-row">
       <div class="month-block">
         <div>
-          <div class="mn">November 2025</div>
-          <div class="mv">8,085</div>
+          <div class="mn">January 2026</div>
+          <div class="mv">21,865</div>
+          <div class="ms">downloads</div>
+        </div>
+      </div>
+      <div class="month-block">
+        <div>
+          <div class="mn">February 2026</div>
+          <div class="mv">18,777</div>
           <div class="ms">downloads</div>
         </div>
       </div>
       <div class="month-block month-block--hi">
         <div>
-          <div class="mn">December 2025</div>
-          <div class="mv">23,444</div>
+          <div class="mn">March 2026</div>
+          <div class="mv">43,703</div>
           <div class="ms">Best month ever ↑</div>
-        </div>
-      </div>
-      <div class="month-block">
-        <div>
-          <div class="mn">January 2026 *</div>
-          <div class="mv">12,317</div>
-          <div class="ms">*first 15 days only</div>
         </div>
       </div>
     </div>
@@ -896,16 +748,16 @@ body {
       <div class="stat-row">
         <div>
           <div class="stat-label">Best Week</div>
-          <div class="stat-sub">Jan 5 – Jan 11, 2026</div>
+          <div class="stat-sub">Mar 26 – Apr 01, 2026</div>
         </div>
-        <div class="stat-val">6,604</div>
+        <div class="stat-val">11,885</div>
       </div>
       <div class="stat-row">
         <div>
           <div class="stat-label">Best Single Day</div>
-          <div class="stat-sub">January 8, 2026</div>
+          <div class="stat-sub">April 8, 2026</div>
         </div>
-        <div class="stat-val">2,086</div>
+        <div class="stat-val">3,013</div>
       </div>
     </div>
 
@@ -915,9 +767,7 @@ body {
   </div>
 
 
-  <!-- ═══════════════════════════════════════
-       SLIDE 7 — VERIFY
-  ═══════════════════════════════════════ -->
+  <!-- ═══ SLIDE 7: VERIFY ═══ -->
   <div class="slide slide--dark">
     <div class="deco">06</div>
 
@@ -941,11 +791,11 @@ body {
       </div>
       <div class="vrow">
         <div class="vl">Verification Hash</div>
-        <div class="vv">11222c1301363ec2</div>
+        <div class="vv">02a30cfa555e1e38</div>
       </div>
       <div class="vrow">
         <div class="vl">Report Generated</div>
-        <div class="vv">2026-01-20 16:56 UTC</div>
+        <div class="vv">2026-04-10 16:01 UTC</div>
       </div>
       <div class="vrow">
         <div class="vl">Status</div>
@@ -954,13 +804,13 @@ body {
     </div>
 
     <div class="api-box">
-      api.npmjs.org/downloads/point/2024-07-15:2026-01-15/mcp-server-kubernetes<br>
+      api.npmjs.org/downloads/point/2024-07-15:2026-04-10/mcp-server-kubernetes<br>
       npmjs.com/package/mcp-server-kubernetes<br>
       github.com/Flux159/mcp-server-kubernetes
     </div>
 
     <div style="flex: 1;"></div>
-    <div class="brand" style="color: rgba(255,255,255,0.18);">Generated 2026-01-20 UTC</div>
+    <div class="brand" style="color: rgba(255,255,255,0.18);">Generated 2026-04-10 UTC</div>
     <div class="pg">7 / 7</div>
   </div>
 
